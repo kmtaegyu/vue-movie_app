@@ -140,7 +140,7 @@ export default {
     },
     logout() {
       localStorage.removeItem("authToken"); // 인증 토큰 삭제
-      this.$router.push("/auth"); // 로그인 화면으로 이동
+      this.$router.push("/"); // 로그인 화면으로 이동
     },
     showErrorMessage(message) {
       this.$toast.error(message, {

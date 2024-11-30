@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { createRouter, createWebHistory } from 'vue-router'; // Vue Router 4.x 가져오기
+import { createRouter, createWebHashHistory } from 'vue-router'; // Vue Router 4.x 가져오기
 import AuthPage from "../components/AuthPage.vue"; // 로그인 및 회원가입 페이지
 import UserDashboard from "../components/UserDashboard.vue"; // 대시보드 페이지
 import NotFound from "../components/NotFound.vue"; // 404 페이지
@@ -12,9 +12,9 @@ import MovieDetails from "../components/MovieDetails.vue"; // 영화 세부정�
 // 경로와 컴포넌트 매핑
 const routes = [
   //{ path: "/", redirect: "/auth" }, // 기본 경로: 로그인 및 회원가입 페이지로 리디렉션
-  { path: "/auth", component: AuthPage }, // 로그인 및 회원가입
+  { path: "/", component: AuthPage }, // 로그인 및 회원가입
   { 
-    path: "/", 
+    path: "/dashboard", 
     component: UserDashboard,
     meta: { requiresAuth: true }, // 로그인 필요
   },
@@ -43,7 +43,7 @@ const routes = [
 
 // Vue Router 생성
 const router = createRouter({
-  history: createWebHistory(), // 브라우저 히스토리 모드 사용
+  history: createWebHashHistory(), // 브라우저 히스토리 모드 사용
   routes, // 정의된 경로 사용
 });
 

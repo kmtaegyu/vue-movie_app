@@ -4,7 +4,7 @@
       <h1>MovieApp</h1>
     </div>
     <nav class="navbar-links">
-      <router-link to="/">홈</router-link>
+      <router-link to="/dashboard">홈</router-link>
       <router-link to="/popular">대세 콘텐츠</router-link>
       <router-link to="/search">찾아보기</router-link>
       <router-link to="/wishlist">내가 찜한 콘텐츠</router-link>
@@ -22,7 +22,7 @@ export default {
       localStorage.removeItem("authToken");
 
       // 로그인 페이지로 이동
-      this.$router.push("/auth");
+      this.$router.push("/");
     },
   },
 };
