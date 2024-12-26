@@ -9,6 +9,16 @@ module.exports = defineConfig({
         '__VUE_PROD_HYDRATION_MISMATCH_DETAILS__': JSON.stringify(false), // Feature Flag 설정
       }),
     ],
+    resolve: {
+      alias: {
+        vue$: "vue/dist/vue.esm-bundler.js",
+      },
+    },
+  },
+  devServer: {
+    host: "localhost",
+    port: 8080,
+    allowedHosts: "all",
   },
   publicPath: process.env.NODE_ENV === 'production' ? '/vue-movie_app/' : '/',
 });

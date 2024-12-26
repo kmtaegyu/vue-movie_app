@@ -8,7 +8,15 @@
       <router-link to="/popular">대세 콘텐츠</router-link>
       <router-link to="/search">찾아보기</router-link>
       <router-link to="/wishlist">내가 찜한 콘텐츠</router-link>
-      <button class="logout-button" @click="logout">Logout</button>
+      
+      <!-- 로그인 상태에 따라 UI 변경 -->
+      <span v-if="isLoggedIn">
+        <span class="welcome-message">Welcome, {{ nickname || 'Guest' }}!</span>
+        <button class="logout-button" @click="logout">Logout</button>
+      </span>
+      <span v-else>
+        <button class="login-button" @click="goToLogin">Login</button>
+      </span>
     </nav>
   </header>
 </template>
@@ -16,13 +24,30 @@
 <script>
 export default {
   name: "AppHeader",
+  data() {
+    return {
+      nickname: localStorage.getItem("nickname"), // 사용자 이름 가져오기
+      profileImage: localStorage.getItem("profileImage"), // 프로필 이미지 가져오기
+    };
+  },
+  computed: {
+    isLoggedIn() {
+      return !!localStorage.getItem("authToken"); // 로그인 여부 확인
+    },
+  },
   methods: {
     logout() {
-      // Local Storage에서 authToken 삭제
+      // Local Storage에서 사용자 정보 삭제
       localStorage.removeItem("authToken");
+      localStorage.removeItem("nickname");
+      //localStorage.removeItem("email");
+      localStorage.removeItem("profileImage");
 
       // 로그인 페이지로 이동
       this.$router.push("/");
+    },
+    goToLogin() {
+      this.$router.push("/login"); // 로그인 페이지로 이동
     },
   },
 };
@@ -68,6 +93,7 @@ export default {
 .navbar-links a:hover {
   text-decoration: underline;
 }
+
 .logout-button {
   margin-left: 15px;
   background-color: #d9534f;
@@ -80,5 +106,27 @@ export default {
 
 .logout-button:hover {
   background-color: #c9302c;
+}
+
+.login-button {
+  margin-left: 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* 프로필 이미지 스타일 */
+.profile-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 </style>

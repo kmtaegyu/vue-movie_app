@@ -3,6 +3,12 @@
     <!-- 상단바 -->
     <AppHeader />
     <h1>Welcome to User Dashboard</h1>
+    <div class="user-info">
+      <h2>사용자 정보:</h2>
+      <p>닉네임: {{ nickname }}</p>
+      <img v-if="profileImage" :src="profileImage" alt="Profile" class="profile-image" />
+      <p v-else>프로필 이미지가 없습니다.</p>
+    </div>
     <button @click="logout" class="logout-button">Logout</button> <!-- 로그아웃 버튼 -->
     
     <!-- 로딩 상태 -->
@@ -75,6 +81,8 @@ export default {
       latestMovies: [],
       actionMovies: [],
       wishlist: [], // 찜한 영화 목록
+      nickname: localStorage.getItem("nickname") || "Anonymous", // 닉네임 가져오기
+      profileImage: localStorage.getItem("profileImage"), // 프로필 이미지 가져오기
     };
   },
   methods: {
