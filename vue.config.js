@@ -20,5 +20,6 @@ module.exports = defineConfig({
     port: 8080,
     allowedHosts: "all",
   },
-  publicPath: process.env.NODE_ENV === 'production' ? '/vue-movie_app/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/vue-movie_app/' : '/', // GitHub Pages 경로 설정
+  outputDir: 'docs', // GitHub Pages에서 사용하는 빌드 폴더
 });
